@@ -32,8 +32,6 @@ rule download_genomes:
         GENUS_LIST
     output:
         out_list
-    threads:
-        config["dn_genomes"]["thread"]
     conda:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
