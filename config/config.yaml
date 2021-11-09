@@ -1,31 +1,20 @@
 # Directory where the files are located
-work_dir: "/mnt/md1200/epfl_sber/NOMIS_COASSEMBLY"
+work_dir: "/mnt/md1200/massimo/PanGFS"
 
 # Directory where the results are to be stored
-results_dir: "/mnt/esb-storage-01/NOMIS/coassembly/results"
+results_dir: "/mnt/md1200/massimo/PanGFS_res"
 
 # Directory where conda environments are located
-env_dir: "/mnt/md1200/epfl_sber/NOMIS_COASSEMBLY/envs"
+env_dir: "/mnt/md1200/massimo/PanGFS/envs"
 
 # Directory with scripts for analyses
-scripts_dir: "/mnt/md1200/epfl_sber/NOMIS_COASSEMBLY/scripts"
+scripts_dir: "/mnt/md1200/massimo/PanGFS/scripts"
 
 # Directory with the bins of interest
-bin_dir: "/mnt/esb-storage-01/NOMIS/coassembly/polaromonas_bins"
-
-# Directory with the preprocessed FASTQ reads
-fastq_dir: "/mnt/esb-storage-01/NOMIS/coassembly/preproc"
+bin_dir: "/mnt/esb-storage-01/NOMIS/..."
 
 # Set of HMM to use for Gtotree
+
 gtotree:
   hmm: 'Gammaproteobacteria'
 
-##########
-# Params #
-bwa:
-  threads: 24
-  sort: 
-    threads: 4
-    chunk_size: "4G"
-  vcf:
-    threads: 8
