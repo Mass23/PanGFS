@@ -9,16 +9,16 @@ localrules:
 
 ###########################
 # default 
-out_list = []
-for key in ACCESSIONS_DICT.keys():
-    acc_file =  ACCESSIONS_DICT[key]
-    acc_list = open(acc_file, 'r').read().split('\n')
-    for accession in acc_list:
-        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession+'_{wildcards.name}.fna.gz'))
+#out_list = []
+#for key in ACCESSIONS_DICT.keys():
+#    acc_file =  ACCESSIONS_DICT[key]
+#    acc_list = open(acc_file, 'r').read().split('\n')
+#    for accession in acc_list:
+#        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession+'_{wildcards.name}.fna.gz'))
 
 rule dn_genomes:
     input:
-        out_list
+        expand(os.path.join(RESULTS_DIR,'/Genomes/{GENUS}/'),GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
 
