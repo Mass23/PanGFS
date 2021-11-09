@@ -2,7 +2,6 @@
 import os
 import subprocess
 for acc_file in snakemake.input[0]:
-    print(acc_file)
     genus=acc_file.split('/')[-2]
     for line in open(acc_file, 'r').read().split('\n'):
         if line.startswith('GCA'):
