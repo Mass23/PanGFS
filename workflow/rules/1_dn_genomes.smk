@@ -11,7 +11,7 @@ localrules:
 # default 
 rule dn_genomes:
     input:
-        expand(os.path.join(RESULTS_DIR,'Genomes',GENUS), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR,'Genomes/{GENUS}'), GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
 
