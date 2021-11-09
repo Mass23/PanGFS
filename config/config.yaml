@@ -8,7 +8,7 @@ results_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS_res"
 env_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/envs"
 
 # Directory with scripts for analyses
-scripts_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/scripts"
+scripts_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/workflow/scripts"
 
 # Directory with the bins of interest
 mags_dir: "/mnt/esb-storage-01/NOMIS/"
