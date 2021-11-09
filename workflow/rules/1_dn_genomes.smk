@@ -30,7 +30,7 @@ rule dn_genomes:
 
 rule download_genomes:
     input:
-        [ACCESSIONS_DICT[key] for key in ACCESSIONS_DICT.keys()]
+        expand('/mnt/md1200/epfl_sber/massimo/PanGFS/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
     output:
         out_list
     conda:
