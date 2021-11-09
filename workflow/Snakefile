@@ -1,0 +1,109 @@
+# Pipeline for MetaPoly
+#
+# Example call: snakemake -s workflow/Snakefile --configfile config/config.yaml --use-conda --conda-prefix ${CONDA_PREFIX}/pipeline --cores 1 -rpn
+# Example call (esb-compute-01 or litcrit): CORES=24 snakemake -s workflow/Snakefile --configfile config/config.yaml --use-conda --conda-prefix ${CONDA_PREFIX}/pipeline --cores $CORES -rpn
+
+##############################
+# MODULES
+import os, re
+import glob
+import pandas as pd
+
+
+##############################
+# CONFIG
+# can be overwritten by using --configfile <path to config> when calling snakemake
+# configfile: "config/config.yaml"
+
+include:
+    "rules/init.smk"
+
+
+##############################
+# TARGETS & RULES
+
+# List of (main) targets to be created
+TARGETS = []
+
+
+# Download genomes
+if "dn_genomes" in STEPS:
+    include:
+        "rules/dn_genomes.smk"
+    TARGETS += [
+        "status/dn_genomes.done"
+    ]
+
+# Derep MAGs
+if "drep_mags" in STEPS:
+    include:
+        "rules/drep_mags.smk"
+    TARGETS += [
+        "status/drep_mags.done"
+    ]
+
+# Phylogenomic analysis
+if "phylo_analysis" in STEPS:
+    include:
+        "rules/phylo_analysis.smk"
+    TARGETS += [
+        "status/phylo_analysis.done"
+    ]
+
+# Completeness matrix 
+if "comp_matrix" in STEPS:
+    include:
+        "rules/comp_matrix.smk"
+    TARGETS += [
+        "status/comp_matrix.done"
+    ]
+
+# Annotate genomes
+if "annotate_genomes" in STEPS:
+    include:
+        "rules/annotate_genomes.smk"
+    TARGETS += [
+        "status/annotate_genomes.done"
+    ]
+
+# Pangenome
+if "pan_genome" in STEPS:
+    include:
+        "rules/pan_genome.smk"
+    TARGETS += [
+        "status/pan_genome.done"
+    ]
+
+# Annotate pan genomes
+if "annotate_pan" in STEPS:
+    include:
+        "rules/annotate_pan.smk"
+    TARGETS += [
+        "status/annotate_pan.done"
+    ]
+
+# Map the reads
+if "map_reads" in STEPS:
+    include:
+        "rules/map_reads.smk"
+    TARGETS += [
+        "status/map_reads.done"
+    ]
+
+# Variant calling
+if "var_calling" in STEPS:
+    include:
+        "rules/var_calling.smk"
+    TARGETS += [
+        "status/var_calling.done"
+    ]
+
+
+# No targets
+if len(TARGETS) == 0:
+    raise Exception('You are not serious. Nothing to be done? Really?')
+
+rule all:
+    input:
+        TARGETS
+
