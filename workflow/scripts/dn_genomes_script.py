@@ -13,5 +13,5 @@ def process_genus(genus_acc, genus_dir):
         else:
             print(str(line) + ' is not a refseq or genbank accession!')
 
-for i in range(0,length(snakemake.input)):
+for i in range(0,len(snakemake.input)):
     process_genus(snakemake.input[i],snakemake.output[i])
