@@ -30,9 +30,9 @@ rule dn_genomes:
 
 rule download_genomes:
     input:
-        list(expand(DATA_DIR + '/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST))
+        expand(DATA_DIR + '/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
     output:
-        list(directory(expand(RESULTS_DIR + '/Genomes/{GENUS}/',GENUS=GENUS_LIST)))
+        directory(expand(RESULTS_DIR + '/Genomes/{GENUS}/',GENUS=GENUS_LIST))
     conda:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
