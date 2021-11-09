@@ -11,7 +11,7 @@ env_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/envs"
 scripts_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/scripts"
 
 # Directory with the bins of interest
-mags_dir: "/mnt/esb-storage-01/NOMIS/..."
+mags_dir: "/mnt/esb-storage-01/NOMIS/"
 
 # Set of HMM to use for Gtotree
 
