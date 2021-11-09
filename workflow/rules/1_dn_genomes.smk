@@ -30,7 +30,8 @@ rule dn_genomes:
 
 rule download_genomes:
     input:
-        [ACCESSIONS_DICT[key] for key in ACCESSIONS_DICT.keys()]
+        accessions=[ACCESSIONS_DICT[key] for key in ACCESSIONS_DICT.keys()],
+        res_dir=RESULTS_DIR
     output:
         out_list
     conda:
