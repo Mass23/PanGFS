@@ -11,9 +11,11 @@ localrules:
 # default 
 out_list = []
 for key in ACCESSIONS_DICT.keys():
-    accessions = ACCESSIONS_DICT[key]
+    acc_file =  ACCESSIONS_DICT[key]
+    acc_list = open(acc_file, 'r').read().split('\n')
     for accession in accessions:
         out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession))
+
 print(out_list)
 rule dn_genomes:
     input:
