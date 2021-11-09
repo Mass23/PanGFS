@@ -9,9 +9,15 @@ localrules:
 
 ###########################
 # default 
+out_list = []
+for key in ACCESSIONS_DICT.keys():
+    accessions = ACCESSIONS_DICT[key]
+    for accession in accessions:
+        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession))
+
 rule dn_genomes:
     input:
-        expand(os.path.join(RESULTS_DIR,'Genomes/{GENUS}'), GENUS=GENUS_LIST)
+        out_list
     output:
         touch("status/dn_genomes.done")
 
@@ -20,12 +26,6 @@ rule dn_genomes:
 ########################################
 # rules for ncbi-download-genomes #
 ########################################
-
-out_list = []
-for key in ACCESSIONS_DICT.keys():
-    accessions = ACCESSIONS_DICT[key]
-    for accession in accessions:
-        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession))
 
 rule download_genomes:
     input:
@@ -36,11 +36,3 @@ rule download_genomes:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
         os.path.join(SRC_DIR, "dn_genomes_script.py")
-
-rule create_mags_dir_file:
-    input:
-        os.path.join(RESULTS_DIR,"Genomes/")
-    output:
-        os.path.join(DATA_DIR, "genomes_list.txt")
-    shell:
-        "basename -s '.fna.gz' $(ls {input}/*.fna.gz) > {output}"
