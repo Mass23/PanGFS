@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import os
 import subprocess
-print(snakemake.input[0])
+
 for acc_file in snakemake.input[0]:
-    genus=acc_file.split('/')[-2]
     for line in open(acc_file, 'r').read().split('\n'):
         if line.startswith('GCA'):
             args = ['ncbi-genome-download','-o',snakemake.output[0],'--formats','fasta','--flat-output','-s','genbank','-A',line,'bacteria']     
