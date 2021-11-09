@@ -16,7 +16,7 @@ import pandas as pd
 # configfile: "config/config.yaml"
 
 include:
-    "workflow/rules/init.smk"
+    "rules/init.smk"
 
 ##############################
 # TARGETS & workflow/rules
@@ -28,7 +28,7 @@ STEPS = ['dn_genomes']#, 'gtdbtk', 'phylo_analysis', 'pan_genome']
 # Download genomes
 if "dn_genomes" in STEPS:
     include:
-        "workflow/rules/1_dn_genomes.smk"
+        "rules/1_dn_genomes.smk"
     TARGETS += [
         "status/dn_genomes.done"
     ]
@@ -36,7 +36,7 @@ if "dn_genomes" in STEPS:
 # Taxonomy
 if "gtdbtk" in STEPS:
     include:
-        "workflow/rules/2_gtdbtk.smk"
+        "rules/2_gtdbtk.smk"
     TARGETS += [
         "status/gtdbtk.done"
     ]
@@ -44,7 +44,7 @@ if "gtdbtk" in STEPS:
 # Phylogeny
 if "phylo_analysis" in STEPS:
     include:
-        "workflow/rules/3_phylo_analysis.smk"
+        "rules/3_phylo_analysis.smk"
     TARGETS += [
         "status/phylo_analysis.done"
     ]
@@ -52,7 +52,7 @@ if "phylo_analysis" in STEPS:
 # PanGenome
 if "pan_genome" in STEPS:
     include:
-        "workflow/rules/4_pan_genome.smk"
+        "rules/4_pan_genome.smk"
     TARGETS += [
         "status/pan_genome.done"
     ]
