@@ -1,6 +1,6 @@
 # Pipeline for mapping reads to bins and then identify SNPs
 #
-# Example call: snakemake -s Snakefile --configfile config.yaml --use-conda --cores 1 -rpn
+# Example call: snakemake -s Snakefile --configfile config/config.yaml --use-conda --cores 1 -rpn
 
 ##############################
 # MODULES
