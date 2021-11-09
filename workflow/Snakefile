@@ -18,86 +18,44 @@ import pandas as pd
 include:
     "rules/init.smk"
 
-
 ##############################
 # TARGETS & RULES
 
 # List of (main) targets to be created
 TARGETS = []
-
+STEPS = ['dn_genomes']#, 'gtdbtk', 'phylo_analysis', 'pan_genome']
 
 # Download genomes
 if "dn_genomes" in STEPS:
     include:
-        "rules/dn_genomes.smk"
+        "rules/1_dn_genomes.smk"
     TARGETS += [
         "status/dn_genomes.done"
     ]
 
-# Derep MAGs
-if "drep_mags" in STEPS:
+# Taxonomy
+if "gtdbtk" in STEPS:
     include:
-        "rules/drep_mags.smk"
+        "rules/2_gtdbtk.smk"
     TARGETS += [
-        "status/drep_mags.done"
+        "status/gtdbtk.done"
     ]
 
-# Phylogenomic analysis
+# Phylogeny
 if "phylo_analysis" in STEPS:
     include:
-        "rules/phylo_analysis.smk"
+        "rules/3_phylo_analysis.smk"
     TARGETS += [
         "status/phylo_analysis.done"
     ]
 
-# Completeness matrix 
-if "comp_matrix" in STEPS:
-    include:
-        "rules/comp_matrix.smk"
-    TARGETS += [
-        "status/comp_matrix.done"
-    ]
-
-# Annotate genomes
-if "annotate_genomes" in STEPS:
-    include:
-        "rules/annotate_genomes.smk"
-    TARGETS += [
-        "status/annotate_genomes.done"
-    ]
-
-# Pangenome
+# PanGenome
 if "pan_genome" in STEPS:
     include:
-        "rules/pan_genome.smk"
+        "rules/4_pan_genome.smk"
     TARGETS += [
         "status/pan_genome.done"
     ]
-
-# Annotate pan genomes
-if "annotate_pan" in STEPS:
-    include:
-        "rules/annotate_pan.smk"
-    TARGETS += [
-        "status/annotate_pan.done"
-    ]
-
-# Map the reads
-if "map_reads" in STEPS:
-    include:
-        "rules/map_reads.smk"
-    TARGETS += [
-        "status/map_reads.done"
-    ]
-
-# Variant calling
-if "var_calling" in STEPS:
-    include:
-        "rules/var_calling.smk"
-    TARGETS += [
-        "status/var_calling.done"
-    ]
-
 
 # No targets
 if len(TARGETS) == 0:
@@ -106,4 +64,3 @@ if len(TARGETS) == 0:
 rule all:
     input:
         TARGETS
-
