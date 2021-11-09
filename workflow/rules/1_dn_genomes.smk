@@ -13,7 +13,7 @@ out_list = []
 for key in ACCESSIONS_DICT.keys():
     acc_file =  ACCESSIONS_DICT[key]
     acc_list = open(acc_file, 'r').read().split('\n')
-    for accession in accessions:
+    for accession in acc_list:
         out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession))
 
 print(out_list)
