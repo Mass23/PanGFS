@@ -30,9 +30,9 @@ rule dn_genomes:
 
 rule download_genomes:
     input:
-        expand('/mnt/md1200/epfl_sber/massimo/PanGFS/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
+        expand(os.path.join(DATA_DIR,'/accessions/{GENUS}/{GENUS}_accessions'),GENUS=GENUS_LIST)
     output:
-        out_list
+        expand(os.path.join(RESULTS_DIR,'/Genomes/{GENUS}/'),GENUS=GENUS_LIST)
     conda:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
