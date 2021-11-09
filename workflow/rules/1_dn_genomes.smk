@@ -30,7 +30,7 @@ rule dn_genomes:
 
 rule download_genomes:
     input:
-        expand(os.path.join(DATA_DIR,'/accessions/{GENUS}/{GENUS}_accessions'),GENUS=GENUS_LIST)
+        expand('{DATA_DIR}/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
     output:
         expand(os.path.join(RESULTS_DIR,'/Genomes/{GENUS}/'),GENUS=GENUS_LIST)
     conda:
