@@ -25,9 +25,9 @@ MAGS_DIR = config["mags_dir"]
 
 ##############################
 # Input
-GENUS_LIST = ['g__Polaromonas','g__Hymenobacter','g__Flavobacterium','g__Methylotenera','g__Novosphingobium']
-ACCESSIONS_DICT = {'g__Polaromonas': os.path.join(DATA_DIR,'accessions/Polaromonas/Polaromonas_accessions'),
-                   'g__Hymenobacter': os.path.join(DATA_DIR,'accessions/Hymenobacter/Hymenobacter_accessions'),
-                   'g__Flavobacterium': os.path.join(DATA_DIR,'accessions/Flavobacterium/Flavobacterium_accessions'),
-                   'g__Methylotenera': os.path.join(DATA_DIR,'accessions/Methylotenera/Methylotenera_accessions'),
-                   'g__Novosphingobium': os.path.join(DATA_DIR,'accessions/Novosphingobium/Novosphingobium_accessions')}
+GENUS_LIST = ['Polaromonas','Hymenobacter','Flavobacterium','Methylotenera','Novosphingobium']
+ACCESSIONS_DICT = {'Polaromonas': os.path.join(DATA_DIR,'accessions/Polaromonas/Polaromonas_accessions'),
+                   'Hymenobacter': os.path.join(DATA_DIR,'accessions/Hymenobacter/Hymenobacter_accessions'),
+                   'Flavobacterium': os.path.join(DATA_DIR,'accessions/Flavobacterium/Flavobacterium_accessions'),
+                   'Methylotenera': os.path.join(DATA_DIR,'accessions/Methylotenera/Methylotenera_accessions'),
+                   'Novosphingobium': os.path.join(DATA_DIR,'accessions/Novosphingobium/Novosphingobium_accessions')}
