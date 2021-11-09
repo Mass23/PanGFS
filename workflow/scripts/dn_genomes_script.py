@@ -2,6 +2,7 @@
 import os
 import subprocess
 
+os.mkdir(snakemake.output[0])
 
 for line in open(snakemake.input[0], 'r').read().split('\n'):
     if line.startswith('GCA'):
