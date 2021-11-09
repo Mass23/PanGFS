@@ -1,3 +1,3 @@
-# PolyGFS
+# PamGFS
 
-Analysis of GFS metagenome assembled genomes (MAGs) in a coassembly to assess polymorphism in multiple populations, across genomic regions.
+Analysis of GFS metagenome assembled genomes (MAGs) from a phylogenomic perspective.
