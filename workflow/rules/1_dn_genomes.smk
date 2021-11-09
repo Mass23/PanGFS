@@ -11,8 +11,7 @@ localrules:
 # default 
 rule dn_genomes:
     input:
-        os.path.join(RESULTS_DIR,"Genomes"),
-        os.path.join(DATA_DIR, "genomes_list.txt")
+        expand(os.path.join(RESULTS_DIR,'Genomes',GENUS), GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
 
@@ -22,12 +21,17 @@ rule dn_genomes:
 # rules for ncbi-download-genomes #
 ########################################
 
+out_list = []
+for key in ACCESSIONS_DICT.keys():
+    accessions = ACCESSIONS_DICT[key]
+    for accession in accessions:
+        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession))
+
 rule download_genomes:
     input:
-        GENOMES
+        GENUS_LIST
     output:
-        directory(os.path.join(RESULTS_DIR,"Genomes"))#,
-        #os.path.join(RESULTS_DIR,"status/download_genomes.done")
+        out_list
     threads:
         config["dn_genomes"]["thread"]
     conda:
@@ -37,7 +41,6 @@ rule download_genomes:
 
 rule create_mags_dir_file:
     input:
-        #os.path.join(RESULTS_DIR,"status/download_genomes.done"),
         os.path.join(RESULTS_DIR,"Genomes/")
     output:
         os.path.join(DATA_DIR, "genomes_list.txt")

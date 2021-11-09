@@ -6,13 +6,13 @@ localrules:
 ###########################
 # default
 
-rule collect_mags:
+rule gtdbtk:
     input:
         os.path.join(RESULTS_DIR, "gtdbtk_output"),
         os.path.join(DATA_DIR, "mags_list.txt"),
         os.path.join(RESULTS_DIR, "MAGs")
     output:
-        touch("status/collect_mags.done")
+        touch("status/gtdbtk.done")
 
 
 ################################################
@@ -40,12 +40,13 @@ rule gtdbtk:
 
 rule list_target_mags:
     input:
-        os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv")
+        GTDBTK_FILE=os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv"),
+	    GENUS=GENUS_LIST
     output:
-        os.path.join(DATA_DIR, "mags_list.txt")
+        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=input.GENUS)
     run:
         tax_string = 'g__Polaromonas'
-        gtdbtk_file = pd.read_csv(input[0], sep='\t')
+        gtdbtk_file = pd.read_csv(GTDBTK_FILE, sep='\t')
         gtdbtk_sub = gtdbtk_file[gtdbtk_file['classification'].str.contains(tax_string)].user_genome
         gtdbtk_sub.to_csv(output[0], sep='\t', index=False)
 

@@ -29,4 +29,4 @@ rule run_gtotree:
         "ls {RESULTS_DIR}/{input.GENUS}/mags/dereplicated_genomes/*.fasta > drep_mags_paths.txt &&"
         "ls {RESULTS_DIR}/{input.GENUS}/Genomes/*.fna > genomes_paths.txt &&"
         "cat drep_mags_paths.txt genomes_paths.txt > genomes_drep_mags_paths.txt &&"
-        "GToTree -o {RESULTS_DIR}/gtotree_output -f genomes_drep_mags_paths.txt -H {params.hmm_gtotree} -j {params.threads_gtotree}"
+        "GToTree -o {RESULTS_DIR}/{input.GENUS}/gtotree_output -f genomes_drep_mags_paths.txt -H {params.hmm_gtotree} -j {params.threads_gtotree}"

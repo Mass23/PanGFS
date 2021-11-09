@@ -1,14 +1,14 @@
 # Directory where the files are located
-work_dir: "/mnt/md1200/massimo/PanGFS"
+work_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS"
 
 # Directory where the results are to be stored
-results_dir: "/mnt/md1200/massimo/PanGFS_res"
+results_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS_res"
 
 # Directory where conda environments are located
-env_dir: "/mnt/md1200/massimo/PanGFS/envs"
+env_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/envs"
 
 # Directory with scripts for analyses
-scripts_dir: "/mnt/md1200/massimo/PanGFS/scripts"
+scripts_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/scripts"
 
 # Directory with the bins of interest
 bin_dir: "/mnt/esb-storage-01/NOMIS/..."

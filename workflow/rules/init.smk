@@ -26,5 +26,9 @@ FASTQ_DIR = config["fastq_dir"]
 
 ##############################
 # Input
-GENOMES = "accessions_list.txt"
-GENUS_LIST = ['g__Polaromonas','g__Hymenobacter','g__Flavobacterium']
+GENUS_LIST = ['g__Polaromonas','g__Hymenobacter','g__Flavobacterium','g__Methylotenera','g__Novosphingobium']
+ACCESSIONS_DICT = {'g__Polaromonas': open(os.path.join(DATA_DIR,'accessions/Polaromonas/Polaromonas_accessions'),'r').read().split('\n'),
+                   'g__Hymenobacter': open(os.path.join(DATA_DIR,'accessions/Hymenobacter/Hymenobacter_accessions'),'r').read().split('\n'),
+                   'g__Flavobacterium': open(os.path.join(DATA_DIR,'accessions/Flavobacterium/Flavobacterium_accessions'),'r').read().split('\n'),
+                   'g__Methylotenera': open(os.path.join(DATA_DIR,'accessions/Methylotenera/Methylotenera_accessions'),'r').read().split('\n'),
+                   'g__Novosphingobium': open(os.path.join(DATA_DIR,'accessions/Novosphingobium/Novosphingobium_accessions'),'r').read().split('\n')}

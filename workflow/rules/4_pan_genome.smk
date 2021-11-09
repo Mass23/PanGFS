@@ -10,9 +10,10 @@ localrules: bin_collect_mantis, bin_link_mantis, mantis_config, mantis_reformat_
 ###########################
 # default
 
-rule annotate_genomes:
+rule pan_genome:
     input:
-        os.path.join(RESULTS_DIR, "logs/mantis.done")
+        os.path.join(RESULTS_DIR, "logs/mantis.done"),
+        os.path.join(RESULTS_DIR, "logs/mmseqs.done")
     output:
         touch("status/annotate_genomes.done")
 
