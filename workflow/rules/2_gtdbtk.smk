@@ -10,7 +10,7 @@ rule gtdbtk:
     input:
         os.path.join(RESULTS_DIR, "gtdbtk_output"),
         expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST),
-        directory(expand(os.path.join(RESULTS_DIR, "MAGs/{GENUS}"), GENUS=GENUS_LIST))
+        expand(os.path.join(RESULTS_DIR, "MAGs/{GENUS}/"), GENUS=GENUS_LIST)
     output:
         touch("status/gtdbtk.done")
 
@@ -23,7 +23,8 @@ rule run_gtdbtk:
     input:
         os.path.join(MAGS_DIR)
     output:
-        directory(os.path.join(RESULTS_DIR, "gtdbtk_output"))
+        directory(os.path.join(RESULTS_DIR, "gtdbtk_output")),
+        os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv")
     log:
         os.path.join(RESULTS_DIR, "logs/gtdbtk.log")
     conda:
