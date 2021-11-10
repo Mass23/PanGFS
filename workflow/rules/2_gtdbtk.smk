@@ -44,7 +44,7 @@ rule list_target_mags:
     output:
         expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
-        for i in range(0,len(output)):
+        for i in range(0,len(GENUS_LIST)):
             tax_string = input.GENUS[i]
             gtdbtk_file = pd.read_csv(input.GTDBTK_DIR + 'gtdbtk.bac120.summary.tsv', sep='\t')
             gtdbtk_sub = gtdbtk_file[gtdbtk_file['classification'].str.contains(tax_string)].user_genome
