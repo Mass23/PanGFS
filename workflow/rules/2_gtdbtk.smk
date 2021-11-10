@@ -51,16 +51,13 @@ rule list_target_mags:
 
 rule copy_target_mags:
     input:
-        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST),
-        MAGS_DIR=MAGS_DIR
+        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     output:
         directory(expand(os.path.join(RESULTS_DIR, "MAGs/{GENUS}"), GENUS=GENUS_LIST))
     run:
         import os
-        for i in range(0,len(snakemake.input)):
-            os.mkdir(snakemake.output[i])
-            files_to_move = open(snakemake.input[i], 'r').read().split('\n')
+        for i in range(0,len(input)):
+            os.mkdir(output[i])
+            files_to_move = open(input[i], 'r').read().split('\n')
             for file_to_move in files_to_move:
-                os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + snakemake.output[i])
-            os.system('for line in $(tail -n+2 ' +  + '); do cp -v ' + MAGS_DIR + '/$line.fasta ' + snakemake.output[i] + ' ;done")
-        
+                os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])        
