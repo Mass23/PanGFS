@@ -38,6 +38,6 @@ rule create_genomes_list:
         expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     run:
         import os
-        for i in range(0,len(snakemake.input)):
-            os.system('gunzip ' + snakemake.input[i] + '/*.fna.gz')
-            os.system('ls ' + snakemake.input[i] + '/*.fna > ' + snakemake.output[i])
+        for i in range(0,len(input)):
+            os.system('gunzip ' + input[i] + '/*.fna.gz')
+            os.system('ls ' + input[i] + '/*.fna > ' + output[i])
