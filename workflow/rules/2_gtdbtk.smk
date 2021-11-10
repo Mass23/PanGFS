@@ -21,7 +21,6 @@ rule gtdbtk:
 
 rule run_gtdbtk:
     input:
-        os.path.join(DATA_DIR, "genomes_list.txt"),
         os.path.join(MAGS_DIR)
     output:
         directory(os.path.join(RESULTS_DIR, "gtdbtk_output"))
