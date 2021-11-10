@@ -23,8 +23,8 @@ rule run_gtdbtk:
     input:
         os.path.join(MAGS_DIR)
     output:
-        directory(os.path.join(RESULTS_DIR, "gtdbtk_output")),
-        os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv")
+        GTDB_OUT=directory(os.path.join(RESULTS_DIR, "gtdbtk_output")),
+        TAX_OUT=os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv")
     log:
         os.path.join(RESULTS_DIR, "logs/gtdbtk.log")
     conda:
@@ -36,7 +36,7 @@ rule run_gtdbtk:
     message:
         "Running GTDB toolkit on MAGs"
     shell:
-        "(date && export GTDBTK_DATA_PATH={params} && gtdbtk classify_wf --cpus {threads} -x fasta --genome_dir {input} --out_dir {output} && date) &> {log}"
+        "(date && export GTDBTK_DATA_PATH={params} && gtdbtk classify_wf --cpus {threads} -x fasta --genome_dir {input} --out_dir {output.GTDB_OUT]} && date) &> {log}"
 
 rule list_target_mags:
     input:
