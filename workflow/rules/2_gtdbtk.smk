@@ -19,7 +19,7 @@ rule gtdbtk:
 # rule for collecting mags with taxo. matching #
 ################################################
 
-rule gtdbtk:
+rule run_gtdbtk:
     input:
         os.path.join(DATA_DIR, "genomes_list.txt"),
         os.path.join(MAGS_DIR)
