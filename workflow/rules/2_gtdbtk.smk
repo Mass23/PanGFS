@@ -39,15 +39,16 @@ rule run_gtdbtk:
 
 rule list_target_mags:
     input:
-        GTDBTK_FILE=os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv"),
+        GTDBTK_DIR=os.path.join(RESULTS_DIR, "gtdbtk_output/"),
         GENUS=GENUS_LIST
     output:
         expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
-        tax_string = input.GENUS
-        gtdbtk_file = pd.read_csv(GTDBTK_FILE, sep='\t')
-        gtdbtk_sub = gtdbtk_file[gtdbtk_file['classification'].str.contains(tax_string)].user_genome
-        gtdbtk_sub.to_csv(output[0], sep='\t', index=False)
+        for i in range(0,len(output)):
+            tax_string = input.GENUS[i]
+            gtdbtk_file = pd.read_csv(input.GTDBTK_DIR + 'gtdbtk.bac120.summary.tsv', sep='\t')
+            gtdbtk_sub = gtdbtk_file[gtdbtk_file['classification'].str.contains(tax_string)].user_genome
+            gtdbtk_sub.to_csv(output[i], sep='\t', index=False)
 
 rule copy_target_mags:
     input:
