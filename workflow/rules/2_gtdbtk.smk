@@ -36,7 +36,7 @@ rule run_gtdbtk:
     message:
         "Running GTDB toolkit on MAGs"
     shell:
-        "(date && export GTDBTK_DATA_PATH={params} && gtdbtk classify_wf --cpus {threads} -x fasta --genome_dir {input[1]} --out_dir {output} && date) &> {log}"
+        "(date && export GTDBTK_DATA_PATH={params} && gtdbtk classify_wf --cpus {threads} -x fasta --genome_dir {input} --out_dir {output} && date) &> {log}"
 
 rule list_target_mags:
     input:
