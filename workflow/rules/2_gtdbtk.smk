@@ -40,10 +40,9 @@ rule gtdbtk:
 
 rule list_target_mags:
     input:
-        GTDBTK_FILE=os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv"),
-	    GENUS=GENUS_LIST
+        GTDBTK_FILE=os.path.join(RESULTS_DIR, "gtdbtk_output/gtdbtk.bac120.summary.tsv")
     output:
-        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=input.GENUS)
+        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
         tax_string = 'g__Polaromonas'
         gtdbtk_file = pd.read_csv(GTDBTK_FILE, sep='\t')
@@ -52,9 +51,16 @@ rule list_target_mags:
 
 rule copy_target_mags:
     input:
-        os.path.join(DATA_DIR, "mags_list.txt")
+        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST),
+        MAGS_DIR=MAGS_DIR
     output:
-        directory(os.path.join(RESULTS_DIR, "MAGs"))
-    shell:
-        "mkdir {output} &&"
-        "for line in $(tail -n+2 {input}); do cp -v {MAGS_DIR}/$line.fasta {output} ;done"
+        directory(expand(os.path.join(RESULTS_DIR, "MAGs/{GENUS}"), GENUS=GENUS_LIST))
+    run:
+        import os
+        for i in range(0,len(snakemake.input)):
+            os.mkdir(snakemake.output[i])
+            files_to_move = open(snakemake.input[i], 'r').read().split('\n')
+            for file_to_move in files_to_move:
+                os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + snakemake.output[i])
+            os.system('for line in $(tail -n+2 ' +  + '); do cp -v ' + MAGS_DIR + '/$line.fasta ' + snakemake.output[i] + ' ;done")
+        

@@ -11,10 +11,16 @@ env_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/envs"
 scripts_dir: "/mnt/md1200/epfl_sber/massimo/PanGFS/workflow/scripts"
 
 # Directory with the bins of interest
-mags_dir: "/mnt/esb-storage-01/NOMIS/"
+mags_dir: "/mnt/esb-storage-01/NOMIS/ROCKS/rock_bins"
+
+# Directors of the gtdbtk database
+gtdbtk_db_dir: "/mnt/esb-storage-01/NOMIS/databases/release202"
+
+gtdbtk:
+  path: "/mnt/esb-storage-01/NOMIS/databases/release202"
+  threads: 32
 
 # Set of HMM to use for Gtotree
-
 gtotree:
   hmm: 'Gammaproteobacteria'
 

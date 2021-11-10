@@ -8,17 +8,10 @@ import pandas as pd
 localrules:
 
 ###########################
-# default 
-#out_list = []
-#for key in ACCESSIONS_DICT.keys():
-#    acc_file =  ACCESSIONS_DICT[key]
-#    acc_list = open(acc_file, 'r').read().split('\n')
-#    for accession in acc_list:
-#        out_list.append(os.path.join(RESULTS_DIR,'Genomes',key,accession+'_{wildcards.name}.fna.gz'))
-
 rule dn_genomes:
     input:
-        expand(RESULTS_DIR + '/Genomes/{GENUS}/',GENUS=GENUS_LIST)
+        expand(RESULTS_DIR + '/Genomes/{GENUS}/',GENUS=GENUS_LIST),
+        os.path.join(DATA_DIR, "genomes_list.txt")
     output:
         touch("status/dn_genomes.done")
 
@@ -37,3 +30,14 @@ rule download_genomes:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
         os.path.join(SRC_DIR, "dn_genomes_script.py")
+
+rule create_genomes_list:
+    input:
+        expand(os.path.join(RESULTS_DIR,"Genomes/{GENUS}"), GENUS=GENUS_LIST)
+    output:
+        expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
+    run:
+        import os
+        for i in range(0,len(snakemake.input)):
+            os.system('gunzip ' + snakemake.input[i] + '/*.fna.gz')
+            os.system('ls ' + snakemake.input[i] + '/*.fna > ' + snakemake.output[i])
