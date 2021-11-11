@@ -17,7 +17,10 @@ rule phylo_analysis:
 
 rule run_gtotree:
     input:
-        GENUS=GENUS_LIST
+        GENUS=GENUS_LIST,
+        HMM=HMM_DICT,
+        OUT=OUTGROUP_DICT,
+        RESULTS_DIR=RESULTS_DIR
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output'), GENUS=GENUS_LIST))
     conda:
