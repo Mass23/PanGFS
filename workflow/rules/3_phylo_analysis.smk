@@ -17,7 +17,8 @@ rule phylo_analysis:
 
 rule run_gtotree:
     input:
-        GENUS=GENUS_LIST,
+        GENUS=GENUS_LIST
+    params:
         HMM=HMM_LIST,
         OUT=OUT_LIST,
         RES_DIR=RESULTS_DIR

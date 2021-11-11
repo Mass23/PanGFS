@@ -22,4 +22,4 @@ def process_genus(genus, hmm, out, res_dir):
     subprocess.call(' '.join(gtotree_args), shell = True)
 
 for i in range(0,len(snakemake.input.GENUS)):
-    process_genus(snakemake.input.GENUS[i], snakemake.input.HMM[i], snakemake.input.OUT[i], RES_DIR)
+    process_genus(snakemake.input.GENUS[i], snakemake.params.HMM[i], snakemake.params.OUT[i], snakemake.params.RES_DIR)
