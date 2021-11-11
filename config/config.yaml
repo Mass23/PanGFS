@@ -20,7 +20,5 @@ gtdbtk:
   path: "/mnt/esb-storage-01/NOMIS/databases/release202"
   threads: 32
 
-# Set of HMM to use for Gtotree
-gtotree:
-  hmm: 'Gammaproteobacteria'
+
 

@@ -31,3 +31,5 @@ ACCESSIONS_DICT = {'Polaromonas': os.path.join(DATA_DIR,'accessions/Polaromonas/
                    'Flavobacterium': os.path.join(DATA_DIR,'accessions/Flavobacterium/Flavobacterium_accessions'),
                    'Methylotenera': os.path.join(DATA_DIR,'accessions/Methylotenera/Methylotenera_accessions'),
                    'Novosphingobium': os.path.join(DATA_DIR,'accessions/Novosphingobium/Novosphingobium_accessions')}
+OUTGROUP_LIST = ['GCF_001955735.1','GCF_000473365.1','	GCA_016858305.2','GCF_006363895.1','GCF_001922385.1']
+HMM_GTOTREE = ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Betaproteobacteria','Alphaproteobacteria']
