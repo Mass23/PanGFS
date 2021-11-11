@@ -19,7 +19,7 @@ rule run_gtotree:
     input:
         GENUS=GENUS_LIST,
         OUTGROUP=OUTGROUP_LIST,
-        HMM_gtotree=HMM_GTOTREE
+        HMM=HMM_GTOTREE
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output'), GENUS=GENUS_LIST))
     run:
@@ -40,5 +40,5 @@ rule run_gtotree:
             gtotree_args = ['GToTree','-o',os.path.join(RESULTS_DIR,input.GENUS[i],'gtotree_out'),
                             '-f',os.path.join(RESULTS_DIR, input.GENUS[i], 'paths_list.txt'),
                             '-a',os.path.join(RESULTS_DIR, input.GENUS[i], 'acc_outgroup.txt'),
-                            '-H',input.HMM_gtotree[i],'-j','32']
+                            '-H',input.HMM[i],'-j','32']
             subprocess.call(' '.join(gtotree_args), shell = True)
