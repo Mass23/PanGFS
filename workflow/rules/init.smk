@@ -26,18 +26,5 @@ MAGS_DIR = config["mags_dir"]
 ##############################
 # Input
 GENUS_LIST = ['Polaromonas','Hymenobacter','Flavobacterium','Methylotenera','Novosphingobium']
-ACCESSIONS_DICT = {'Polaromonas': os.path.join(DATA_DIR,'accessions/Polaromonas/Polaromonas_accessions'),
-                   'Hymenobacter': os.path.join(DATA_DIR,'accessions/Hymenobacter/Hymenobacter_accessions'),
-                   'Flavobacterium': os.path.join(DATA_DIR,'accessions/Flavobacterium/Flavobacterium_accessions'),
-                   'Methylotenera': os.path.join(DATA_DIR,'accessions/Methylotenera/Methylotenera_accessions'),
-                   'Novosphingobium': os.path.join(DATA_DIR,'accessions/Novosphingobium/Novosphingobium_accessions')}
-OUTGROUP_DICT = {'Polaromonas': 'GCF_001955735.1',
-                 'Hymenobacter': 'GCF_000473365.1',
-                 'Flavobacterium': 'GCA_016858305.2',
-                 'Methylotenera': 'GCF_006363895.1',
-                 'Novosphingobium': 'GCF_001922385.1'}
-HMM_DICT = {'Polaromonas': 'Gammaproteobacteria',
-            'Hymenobacter': 'Bacteroidetes',
-            'Flavobacterium': 'Bacteroidetes',
-            'Methylotenera': 'Betaproteobacteria',
-            'Novosphingobium': 'Alphaproteobacteria'}
+OUT_LIST = ['GCF_001955735.1','GCF_000473365.1','GCA_016858305.2','GCF_006363895.1','GCF_001922385.1']
+HMM_LIST = ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Betaproteobacteria','Alphaproteobacteria']
