@@ -1,4 +1,3 @@
-user_genome
 GL_R11_GL15_UP_1_C3.contigs
 GL_R12_GL15_UP_2_L6.contigs
 GL_R13_GL15_UP_3_O3_sub.contigs

@@ -1,4 +1,3 @@
-user_genome
 GL_R10_GL11_UP_3_G2.2.1.1.contigs
 GL_R10_GL11_UP_3_maxbin_res.008.fasta_sub.contigs
 GL_R10_GL11_UP_3_maxbin_res.019.fasta_sub.contigs
