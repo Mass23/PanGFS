@@ -10,9 +10,9 @@ def process_genus(genus, hmm, out, res_dir):
     mags_paths = [os.path.join(res_dir, 'MAGs', genus, mag_path) for mag_path in mags_dir]
     merged_paths = genomes_paths + mags_paths
     # create file containing paths/accessions
-    with open(os.path.join(res_dir, genus, 'paths_list.txt')) as f:
+    with open(os.path.join(res_dir, genus, 'paths_list.txt'), 'w') as f:
         f.write('\n'.join(merged_paths))
-    with open(os.path.join(res_dir, genus, 'acc_outgroup.txt')) as f:
+    with open(os.path.join(res_dir, genus, 'acc_outgroup.txt'), 'w') as f:
         f.write(out)
     # run  gtotree
     gtotree_args = ['GToTree','-o',os.path.join(res_dir,genus,'gtotree_out'),
