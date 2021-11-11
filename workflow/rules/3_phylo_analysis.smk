@@ -4,6 +4,7 @@
 import os
 import glob
 import pandas as pd
+import subprocess
 
 localrules: 
 
@@ -21,9 +22,8 @@ rule run_gtotree:
         HMM_gtotree=HMM_GTOTREE
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output'), GENUS=GENUS_LIST))
-    conda:
-        os.path.join(ENV_DIR, "gtotree.yaml")
     run:
+        os.system('conda activate gtotree')
         for i in range(0,len(GENUS_LIST)):
             # list paths
             genomes_dir = os.path.join(RESULTS_DIR, 'Genomes', input.GENUS[i])
@@ -36,7 +36,9 @@ rule run_gtotree:
                 f.write('\n'.join(merged_paths))
             with open(os.path.join(RESULTS_DIR, input.GENUS[i], 'acc_outgroup.txt')) as f:
                 f.write(input.OUTGROUP[i])
+            # run  gtotree
             gtotree_args = ['GToTree','-o',os.path.join(RESULTS_DIR,input.GENUS[i],'gtotree_out'),
                             '-f',os.path.join(RESULTS_DIR, input.GENUS[i], 'paths_list.txt'),
                             '-a',os.path.join(RESULTS_DIR, input.GENUS[i], 'acc_outgroup.txt'),
                             '-H',input.HMM_gtotree[i],'-j','32']
+            subprocess.call(' '.join(gtotree_args), shell = True)
