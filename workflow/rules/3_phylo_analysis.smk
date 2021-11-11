@@ -21,6 +21,7 @@ rule run_gtotree:
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output'), GENUS=GENUS_LIST))
     run:
+        os.system('conda init bash')
         os.system('conda activate gtotree')
         for i in range(0,len(GENUS_LIST)):
             # list paths
