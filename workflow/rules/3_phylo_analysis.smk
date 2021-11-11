@@ -17,9 +17,7 @@ rule phylo_analysis:
 
 rule run_gtotree:
     input:
-        GENUS=GENUS_LIST,
-        OUTGROUP=OUTGROUP_LIST,
-        HMM=HMM_GTOTREE
+        GENUS=GENUS_LIST
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output'), GENUS=GENUS_LIST))
     run:
@@ -35,10 +33,10 @@ rule run_gtotree:
             with open(os.path.join(RESULTS_DIR, input.GENUS[i], 'paths_list.txt')) as f:
                 f.write('\n'.join(merged_paths))
             with open(os.path.join(RESULTS_DIR, input.GENUS[i], 'acc_outgroup.txt')) as f:
-                f.write(input.OUTGROUP[i])
+                f.write(OUTGROUP_DICT[input.GENUS[i]])
             # run  gtotree
             gtotree_args = ['GToTree','-o',os.path.join(RESULTS_DIR,input.GENUS[i],'gtotree_out'),
                             '-f',os.path.join(RESULTS_DIR, input.GENUS[i], 'paths_list.txt'),
                             '-a',os.path.join(RESULTS_DIR, input.GENUS[i], 'acc_outgroup.txt'),
-                            '-H',input.HMM[i],'-j','32']
+                            '-H',HMM_DICT[input.GENUS[i]],'-j','32']
             subprocess.call(' '.join(gtotree_args), shell = True)
