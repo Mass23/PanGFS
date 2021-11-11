@@ -8,7 +8,7 @@ def process_genus(genus, hmm, out, res_dir):
     genomes_dir = os.path.join(res_dir, 'Genomes', genus)
     genomes_paths = [os.path.join(res_dir, 'Genomes', genus,gen_path) for gen_path in os.listdir(genomes_dir) if gen_path.endswith('.fna') or gen_path.endswith('.fasta')]
     mags_dir = os.path.join(res_dir, 'MAGs', genus)
-    mags_paths = [os.path.join(res_dir, 'MAGs', genus, mag_path) for mag_path in os.listdir(mags_dir) if gen_path.endswith('.fna') or gen_path.endswith('.fasta')]
+    mags_paths = [os.path.join(res_dir, 'MAGs', genus, mag_path) for mag_path in os.listdir(mags_dir) if mag_path.endswith('.fna') or mag_path.endswith('.fasta')]
     merged_paths = genomes_paths + mags_paths
     # create file containing paths/accessions
     with open(os.path.join(res_dir, genus, 'paths_list.txt'), 'w') as f:
