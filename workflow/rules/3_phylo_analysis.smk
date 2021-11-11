@@ -10,7 +10,7 @@ localrules:
 ###########################
 rule phylo_analysis:
     input:
-        os.path.join(RESULTS_DIR,"gtotree_output")
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output/'), GENUS=GENUS_LIST)
     output:
         touch("status/phylo_analysis.done")
 
@@ -20,12 +20,9 @@ rule run_gtotree:
         OUTGROUP=OUTGROUP_LIST,
         HMM_gtotree=HMM_GTOTREE
     output:
-        expand(directory(os.path.join(RESULTS_DIR, "{GENUS}/gtotree_output")), GENUS=GENUS_LIST)
+        expand(directory(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_output')), GENUS=GENUS_LIST)
     conda:
         os.path.join(ENV_DIR, "gtotree.yaml")
-    params:
-        hmm_gtotree=config['gtotree']['hmm'],
-        threads_gtotree=config['gtotree']['threads']
     run:
         for i in range(0,len(GENUS_LIST)):
             # list paths
