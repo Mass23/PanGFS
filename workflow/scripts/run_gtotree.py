@@ -13,7 +13,7 @@ def process_genus(genus):
     with open(os.path.join(RESULTS_DIR, genus, 'paths_list.txt')) as f:
         f.write('\n'.join(merged_paths))
     with open(os.path.join(RESULTS_DIR, genus, 'acc_outgroup.txt')) as f:
-        f.write(OUTGROUP_DICT[genus)
+        f.write(OUTGROUP_DICT[genus])
     # run  gtotree
     gtotree_args = ['GToTree','-o',os.path.join(RESULTS_DIR,genus,'gtotree_out'),
                     '-f',os.path.join(RESULTS_DIR, genus, 'paths_list.txt'),
