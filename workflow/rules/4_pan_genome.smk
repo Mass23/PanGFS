@@ -16,7 +16,7 @@ rule pan_genome:
         #os.path.join(RESULTS_DIR, "logs/prokka.done"),
         #os.path.join(RESULTS_DIR, "logs/mmseqs.done")
     output:
-        touch("status/annotate_genomes.done")
+        touch("status/pan_genome.done")
 
 
 rule filter_paths_list:
