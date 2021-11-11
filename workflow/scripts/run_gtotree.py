@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 import os
 import subprocess
+import glob
 
 def process_genus(genus, hmm, out, res_dir):
     # list paths
     genomes_dir = os.path.join(res_dir, 'Genomes', genus)
-    genomes_paths = [os.path.join(res_dir, 'Genomes', genus,gen_path) for gen_path in genomes_dir]
+    genomes_paths = [os.path.join(res_dir, 'Genomes', genus,gen_path) for gen_path in os.listdir(genomes_dir)]
     mags_dir = os.path.join(res_dir, 'MAGs', genus)
-    mags_paths = [os.path.join(res_dir, 'MAGs', genus, mag_path) for mag_path in mags_dir]
+    mags_paths = [os.path.join(res_dir, 'MAGs', genus, mag_path) for mag_path in os.listdir(mags_dir)]
     merged_paths = genomes_paths + mags_paths
     # create file containing paths/accessions
     with open(os.path.join(res_dir, genus, 'paths_list.txt'), 'w') as f:
