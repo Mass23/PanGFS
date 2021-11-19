@@ -8,7 +8,7 @@ import os, re
 import glob
 import pandas as pd
 import numpy as np
-#from Bio import SeqIO
+from Bio import SeqIO
 
 ##############################
 # CONFIG
