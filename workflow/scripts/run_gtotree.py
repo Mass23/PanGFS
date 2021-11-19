@@ -19,7 +19,7 @@ def process_genus(genus, hmm, out, res_dir):
     gtotree_args = ['GToTree','-o',os.path.join(res_dir,genus,'gtotree_out'),
                     '-f',os.path.join(res_dir, genus, 'paths_list.txt'),
                     '-a',os.path.join(res_dir, genus, 'acc_outgroup.txt'),
-                    '-H',hmm,'-j','32','-G','0.4']
+                    '-H',hmm,'-j','32','-G','0.3333']
     subprocess.call(' '.join(gtotree_args), shell = True)
 
 for i in range(0,len(snakemake.input.GENUS)):

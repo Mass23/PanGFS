@@ -18,7 +18,6 @@ rule pan_genome:
     output:
         touch("status/pan_genome.done")
 
-
 rule filter_paths_list:
     input:
         PATH_F=expand(os.path.join(RESULTS_DIR, '{GENUS}/paths_list.txt'), GENUS=GENUS_LIST),

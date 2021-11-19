@@ -25,6 +25,6 @@ MAGS_DIR = config["mags_dir"]
 
 ##############################
 # Input
-GENUS_LIST = ['Polaromonas','Hymenobacter','Flavobacterium','Methylotenera','Novosphingobium']
-OUT_LIST = ['GCF_001955735.1','GCF_000473365.1','GCA_016858305.2','GCF_006363895.1','GCF_001922385.1']
-HMM_LIST = ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Betaproteobacteria','Alphaproteobacteria']
+GENUS_LIST = config['gtotree']['genus_list']
+OUT_LIST = config['gtotree']['out_list']
+HMM_LIST = config['gtotree']['hmm_list']
