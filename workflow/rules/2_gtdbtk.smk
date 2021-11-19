@@ -63,4 +63,4 @@ rule copy_target_mags:
             for file_to_move in files_to_move:
                 contigs_length = [len(rec.seq) for rec in SeqIO.parse(file_to_move,'fasta')]
                 if sum(contigs_length) > 100000:
-                    os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])        
+                    os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])

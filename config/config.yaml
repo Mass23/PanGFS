@@ -20,6 +20,4 @@ gtdbtk:
   path: "/mnt/esb-storage-01/NOMIS/databases/release202"
   threads: 32
 
-gtotree:
-  
 
