@@ -23,7 +23,7 @@ rule run_fastani:
         os.system('conda activate fastani')
         for i in range(0,len(input.GENUS)):
             paths_file = os.path.join(res_dir, input.GENUS[i], 'paths_list.txt')
-            args = ['./FastANI/fastANI','--rl',paths_file,'--ql',paths_file,'-t',32,'-o',os.path.join(RESULTS_DIR, '{GENUS}/fastani_out')']
+            args = ['./FastANI/fastANI','--rl',paths_file,'--ql',paths_file,'-t',32,'-o',os.path.join(RESULTS_DIR, '{GENUS}/fastani_out')]
 
 rule run_gtotree:
     input:
