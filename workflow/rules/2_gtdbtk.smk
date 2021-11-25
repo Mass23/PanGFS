@@ -73,6 +73,7 @@ rul mag_purify:
     conda:
         os.path.join(ENV_DIR, "magpurify.yaml")
     run:
+        os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
         for i in range(0,len(input)):
             in_folder = input[i]
             out_folder = output[i]
