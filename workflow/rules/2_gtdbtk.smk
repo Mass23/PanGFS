@@ -70,9 +70,8 @@ rule mag_purify:
         directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
     output:
         expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
-    conda:
-        os.path.join(ENV_DIR, "magpurify.yaml")
     run:
+        os.system('conda activate magpurify')
         os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
         for i in range(0,len(input)):
             in_folder = input[i]
