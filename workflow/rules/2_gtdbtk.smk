@@ -43,7 +43,7 @@ rule list_target_mags:
         GTDBTK_DIR=os.path.join(RESULTS_DIR, "gtdbtk_output/"),
         GENUS=GENUS_LIST
     output:
-        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
+        expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
         for i in range(0,len(GENUS_LIST)):
             tax_string = input.GENUS[i]
@@ -53,7 +53,7 @@ rule list_target_mags:
 
 rule copy_target_mags:
     input:
-        expand(os.path.join(DATA_DIR, "{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
+        expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     output:
         directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
     run:
