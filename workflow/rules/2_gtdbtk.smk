@@ -24,7 +24,7 @@ rule run_gtdbtk:
     input:
         os.path.join(MAGS_DIR)
     output:
-        directory(os.path.join(RESULTS_DIR, "gtdbtk_output"))
+        directory(os.path.join(RESULTS_DIR, "gtdbtk_output/"))
     log:
         os.path.join(RESULTS_DIR, "logs/gtdbtk.log")
     conda:
