@@ -71,7 +71,7 @@ rul mag_purify:
     output:
         directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"), GENUS=GENUS_LIST))
     conda:
-        os.path.join(ENV_DIR, "mag_purify.yaml")
+        os.path.join(ENV_DIR, "magpurify.yaml")
     run:
         for i in range(0,len(input)):
             in_folder = input[i]
