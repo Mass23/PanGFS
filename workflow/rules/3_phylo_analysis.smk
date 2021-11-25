@@ -15,14 +15,14 @@ rule phylo_analysis:
         touch("status/phylo_analysis.done")
 
 rule run_fastani:
-    input:
-        GENUS=GENUS_LIST
+    params:
+        GENUS_LIST=GENUS_LIST
     output:
         directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out'), GENUS=GENUS_LIST))
     run:
         os.system('conda activate fastani')
-        for i in range(0,len(input.GENUS)):
-            paths_file = os.path.join(res_dir, input.GENUS[i], 'paths_list.txt')
+        for i in range(0,len(params.GENUS_LIST)):
+            paths_file = os.path.join(res_dir, input.GENUS_LIST[i], 'paths_list.txt')
             args = ['./FastANI/fastANI','--rl',paths_file,'--ql',paths_file,'-t',32,'-o',os.path.join(RESULTS_DIR, '{GENUS}/fastani_out')]
 
 rule run_gtotree:
