@@ -40,13 +40,14 @@ rule run_gtdbtk:
 
 rule list_target_mags:
     input:
-        GTDBTK_DIR=os.path.join(RESULTS_DIR, "gtdbtk_output/"),
-        GENUS=GENUS_LIST
+        GTDBTK_DIR=os.path.join(RESULTS_DIR, "gtdbtk_output/")
+    params:
+        GENUS_LIST=config["gtotree"]["genus_list"]
     output:
         expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
         for i in range(0,len(GENUS_LIST)):
-            tax_string = input.GENUS[i]
+            tax_string = 'g__' + params.GENUS[i]
             gtdbtk_file = pd.read_csv(input.GTDBTK_DIR + '/gtdbtk.bac120.summary.tsv', sep='\t')
             gtdbtk_sub = gtdbtk_file[gtdbtk_file['classification'].str.contains(tax_string)].user_genome
             gtdbtk_sub.to_csv(output[i], header =  False, sep='\t', index=False)
