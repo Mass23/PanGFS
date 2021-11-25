@@ -10,7 +10,7 @@ localrules:
 ###########################
 rule dn_genomes:
     input:
-        expand(RESULTS_DIR + '{GENUS}/Genomes/',GENUS=GENUS_LIST),
+        expand(RESULTS_DIR + '/{GENUS}/Genomes/',GENUS=GENUS_LIST),
         expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
