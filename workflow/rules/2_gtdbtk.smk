@@ -67,9 +67,9 @@ rule copy_target_mags:
 
 rule mag_purify:
     input:
-        directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
+        expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/"), GENUS=GENUS_LIST)
     output:
-        expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
+        directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"), GENUS=GENUS_LIST))
     run:
         os.system('conda activate magpurify')
         os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
