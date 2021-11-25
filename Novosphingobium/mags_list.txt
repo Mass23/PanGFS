@@ -1,4 +1,0 @@
-GL_R18_GL16_UP_2_O3.1.contigs
-GL_R68_GL53_UP_2_L1.15.2.contigs
-GL_R80_GL56_UP_1_maxbin_res.002.fasta.contigs
-GL_R9_GL11_UP_2_L19.contigs

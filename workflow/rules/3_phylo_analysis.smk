@@ -1,6 +1,5 @@
 # mantis workflow
 # Runs MANTIS on the MAGs for metabolic assessment
-
 import os
 import glob
 import pandas as pd

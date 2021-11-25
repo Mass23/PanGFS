@@ -23,6 +23,6 @@ gtdbtk:
 ##############################
 # Taxonomies and associated info for gtotree
 gtotree:
-  out_list: ['GCF_001955735.1','GCF_000473365.1','GCA_016858305.2','GCF_006363895.1','GCF_001922385.1']
-  hmm_list: ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Betaproteobacteria','Alphaproteobacteria'] 
-  genus_list: ['Polaromonas','Hymenobacter','Flavobacterium','Methylotenera','Novosphingobium']
+  out_list: ['GCF_000023345.1','GCF_000243275.1','GCF_001953305.1','GCA_000383735.1']
+  hmm_list: ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Bacteria'] 
+  genus_list: ['Polaromonas','Flavobacterium','Ferruginibacter','UBA1315']
