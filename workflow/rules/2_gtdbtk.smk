@@ -65,7 +65,7 @@ rule copy_target_mags:
                 if sum(contigs_length) > 100000:
                     os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])
 
-rul mag_purify:
+rule mag_purify:
     input:
         directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
     output:
