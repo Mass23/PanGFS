@@ -42,7 +42,7 @@ rule list_target_mags:
     input:
         GTDBTK_DIR=os.path.join(RESULTS_DIR, "gtdbtk_output/")
     params:
-        GENUS_LIST=GENUS_LIST
+        GENUS=GENUS_LIST
     output:
         expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
     run:
