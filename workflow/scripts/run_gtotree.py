@@ -26,5 +26,5 @@ def process_genus(genus, hmm, out, res_dir):
                     '-m','MFP','-nt','32','-bb','1000','-pre',os.path.join(res_dir, genus,'iqtree_')]
     subprocess.call(' '.join(iqtree_args), shell = True)
 
-for i in range(0,len(snakemake.input.GENUS)):
-    process_genus(snakemake.input.GENUS[i], snakemake.params.HMM[i], snakemake.params.OUT[i], snakemake.params.RES_DIR)
+for i in range(0,len(snakemake.params.GENUS)):
+    process_genus(snakemake.params.GENUS[i], snakemake.params.HMM[i], snakemake.params.OUT[i], snakemake.params.RES_DIR)
