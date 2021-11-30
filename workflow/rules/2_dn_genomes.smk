@@ -25,7 +25,7 @@ rule download_genomes:
     input:
         expand(DATA_DIR + '/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
     output:
-        directory(expand(RESULTS_DIR + '{GENUS}/Genomes',GENUS=GENUS_LIST))
+        directory(expand(os.path.join(RESULTS_DIR,"{GENUS}/Genomes/"),GENUS=GENUS_LIST))
     conda:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
