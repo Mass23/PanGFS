@@ -34,7 +34,7 @@ rule run_fastani:
     params:
         GENUS_LIST=GENUS_LIST
     output:
-        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out'), GENUS=GENUS_LIST))
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out/'), GENUS=GENUS_LIST)
     run:
         os.system('source /home/massimo.bourquin/apps/miniconda3/etc/profile.d/conda.sh')
         os.system('conda activate fastani')
