@@ -23,12 +23,12 @@ include:
 
 # List of (main) targets to be created
 TARGETS = []
-STEPS = ['dn_genomes', 'gtdbtk_mags', 'phylo_analysis']#, 'pan_genome']
+STEPS = ['gtdbtk_mags', 'dn_genomes', 'phylo_analysis']#, 'pan_genome']
 
 # Download genomes
 if "dn_genomes" in STEPS:
     include:
-        "rules/1_dn_genomes.smk"
+        "rules/2_dn_genomes.smk"
     TARGETS += [
         "status/dn_genomes.done"
     ]
@@ -36,7 +36,7 @@ if "dn_genomes" in STEPS:
 # Taxonomy
 if "gtdbtk_mags" in STEPS:
     include:
-        "rules/2_gtdbtk.smk"
+        "rules/1_gtdbtk.smk"
     TARGETS += [
         "status/gtdbtk.done"
     ]
