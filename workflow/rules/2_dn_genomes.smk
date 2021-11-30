@@ -10,9 +10,8 @@ localrules:
 ###########################
 rule dn_genomes:
     input:
-        'status/gtdbtk.done'#,
-        #expand(RESULTS_DIR + '/{GENUS}/Genomes/',GENUS=GENUS_LIST),
-        #expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
+        'status/gtdbtk.done',
+        expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
 
