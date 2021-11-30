@@ -19,7 +19,7 @@ def process_genus(in_folder, out_folder):
         args5 = ['magpurify', 'known-contam',  mag_in, mag_puri_out]
         subprocess.call(' '.join(args5), shell = True)
         args_clean = ['magpurify', 'clean-bin', mag_in, mag_puri_out, mag_out]
-        subprocess.call(' '.join(args6), shell = True)
+        subprocess.call(' '.join(args_clean), shell = True)
 
 
 os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
