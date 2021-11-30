@@ -23,5 +23,5 @@ def process_genus(in_folder, out_folder):
 
 os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
 
-for i in range(0,len(snakemake.input[i])):
+for i in range(0,len(snakemake.input)):
     process_genus(snakemake.input[i], snakemake.output[i])
