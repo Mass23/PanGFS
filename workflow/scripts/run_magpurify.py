@@ -6,7 +6,7 @@ def process_genus(in_folder, out_folder):
     clean_mags = [i.replace('.fasta','_clean.fasta') for i in raw_mags]
     for mag in range(0,len(raw_mags)):
         mag_in = os.path.join(in_folder, raw_mags[mag])
-        mag_puri_out = os.path.join(in_folder, raw_mags[mag].replace('.fasta','_magpurify/'))
+        mag_puri_out = os.path.join(in_folder, raw_mags[mag].replace('.fasta','_magpurify'))
         mag_out = os.path.join(out_folder, clean_mags[mag])
         args1 = ['magpurify', 'phylo-markers',
         '--db', '/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0', mag_in, mag_puri_out]
