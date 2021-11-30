@@ -10,8 +10,9 @@ localrules:
 ###########################
 rule dn_genomes:
     input:
-        expand(RESULTS_DIR + '/{GENUS}/Genomes/',GENUS=GENUS_LIST),
-        expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
+        'status/gtdbtk.done'#,
+        #expand(RESULTS_DIR + '/{GENUS}/Genomes/',GENUS=GENUS_LIST),
+        #expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     output:
         touch("status/dn_genomes.done")
 
@@ -25,7 +26,7 @@ rule download_genomes:
     input:
         expand(DATA_DIR + '/accessions/{GENUS}/{GENUS}_accessions',GENUS=GENUS_LIST)
     output:
-        expand(RESULTS_DIR + '{GENUS}/Genomes/',GENUS=GENUS_LIST)
+        directory(expand(RESULTS_DIR + '{GENUS}/Genomes',GENUS=GENUS_LIST))
     conda:
         os.path.join(ENV_DIR, "ncbi-g-d.yaml")
     script:
@@ -33,7 +34,7 @@ rule download_genomes:
 
 rule create_genomes_list:
     input:
-        expand(os.path.join(RESULTS_DIR,"{GENUS}/Genomes/"), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR,"{GENUS}/Genomes"), GENUS=GENUS_LIST)
     output:
         expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     run:

@@ -10,7 +10,8 @@ localrules:
 ###########################
 rule phylo_analysis:
     input:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out/'), GENUS=GENUS_LIST)
+        'status/dn_genomes.done'
+        #expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out/'), GENUS=GENUS_LIST)
     output:
         touch("status/phylo_analysis.done")
 

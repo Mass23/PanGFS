@@ -60,9 +60,9 @@ rule copy_target_mags:
     run:
         for i in range(0,len(input)):
             os.mkdir(output[i])
-            files_to_move = open(input[i], 'r').read().split('\n')
+            files_to_move = [i for i in open(input[i], 'r').read().split('\n') if i != '']
             for file_to_move in files_to_move:
-                contigs_length = [len(rec.seq) for rec in SeqIO.parse(file_to_move,'fasta')]
+                contigs_length = [len(rec.seq) for rec in SeqIO.parse(os.path.join(MAGS_DIR, file_to_move) + '.fasta','fasta')]
                 if sum(contigs_length) > 100000:
                     os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])
 
