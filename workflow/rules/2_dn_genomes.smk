@@ -33,7 +33,7 @@ rule download_genomes:
 
 rule create_genomes_list:
     input:
-        expand(os.path.join(RESULTS_DIR,"{GENUS}/Genomes"), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR,"{GENUS}/Genomes/"), GENUS=GENUS_LIST)
     output:
         expand(os.path.join(DATA_DIR, "{GENUS}/genomes_list.txt"), GENUS=GENUS_LIST)
     run:
