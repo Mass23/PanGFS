@@ -68,7 +68,7 @@ rule mag_purify:
     input:
         expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/"), GENUS=GENUS_LIST)
     output:
-        directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"), GENUS=GENUS_LIST))
+        expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
     conda:
         os.path.join(ENV_DIR, "magpurify.yaml")
     script:
