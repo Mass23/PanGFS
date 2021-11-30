@@ -1,5 +1,6 @@
 import os
-
+import glob
+import subprocess
 def process_genus(in_folder, out_folder):
     raw_mags = glob.glob(in_folder)
     clean_mags = [i.replace('.fasta','_clean.fasta') for i in raw_mags]
