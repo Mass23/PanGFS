@@ -8,10 +8,8 @@ localrules:
 
 rule gtdbtk:
     input:
-        os.path.join(RESULTS_DIR, "gtdbtk_output/")#,
-        #expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST),
-        #expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/"), GENUS=GENUS_LIST),
-        #expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
+        os.path.join(RESULTS_DIR, "gtdbtk_output/"),
+        expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
     output:
         touch("status/gtdbtk.done")
 
