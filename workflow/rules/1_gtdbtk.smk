@@ -69,7 +69,7 @@ rule mag_purify:
         expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/"), GENUS=GENUS_LIST)
     output:
         expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/"), GENUS=GENUS_LIST)
-    conda:
-        os.path.join(ENV_DIR, "magpurify.yaml")
+    #conda:
+    #    os.path.join(ENV_DIR, "magpurify.yaml")
     script:
         os.path.join(SRC_DIR, "run_magpurify.py")
