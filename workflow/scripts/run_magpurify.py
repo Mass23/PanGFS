@@ -1,7 +1,3 @@
-os.system('source /home/massimo.bourquin/apps/miniconda3/etc/profile.d/conda.sh')
-os.system('conda activate magpurify')
-os.system('export MAGPURIFYDB=/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0')
-
 def process_genus(in_folder, out_folder):
     raw_mags = glob.glob(in_folder)
     clean_mags = [i.replace('.fasta','_clean.fasta') for i in raw_mags]
@@ -21,7 +17,6 @@ def process_genus(in_folder, out_folder):
         subprocess.call(' '.join(args5), shell = True)
         args_clean = ['magpurify', 'clean-bin', mag_in, mag_puri_out, mag_out]
         subprocess.call(' '.join(args6), shell = True)
-
 
 for i in range(0,len(snakemake.params.GENUS)):
     process_genus(snakemake.input[i], snakemake.output[i])

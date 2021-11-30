@@ -77,3 +77,5 @@ dependencies:
   - zlib=1.2.11=h36c2ea0_1013
   - zstd=1.4.9=ha95c52a_0
 prefix: /home/massimo.bourquin/apps/miniconda3/envs/magpurify
+variables:
+  - MAGPURIFYDB: /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0
