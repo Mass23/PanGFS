@@ -22,7 +22,7 @@ rule run_gtotree:
         OUT=OUT_LIST,
         RES_DIR=RESULTS_DIR
     output:
-        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out'), GENUS=GENUS_LIST))
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out/'), GENUS=GENUS_LIST)
     conda:
         os.path.join(ENV_DIR, "gtotree.yaml")
     script:
