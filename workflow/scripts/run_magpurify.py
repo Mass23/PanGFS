@@ -3,7 +3,7 @@ import glob
 import subprocess
 def process_genus(in_folder, out_folder):
     raw_mags = glob.glob(in_folder + '/*.fasta')
-    clean_mags = [i.replace('.fasta','_clean.fasta') for i in raw_mags]
+    clean_mags = [i.split('/')[-1].replace('.fasta','_clean.fasta') for i in raw_mags]
     for mag in range(0,len(raw_mags)):
         mag_in = os.path.join(in_folder, raw_mags[mag])
         mag_puri_out = os.path.join(in_folder, raw_mags[mag].replace('.fasta','_magpurify'))
