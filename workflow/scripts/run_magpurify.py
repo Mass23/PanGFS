@@ -7,7 +7,7 @@ def process_genus(in_folder, out_folder):
     for mag in range(0,len(raw_mags)):
         mag_in = os.path.join(in_folder, raw_mags[mag])
         mag_puri_out = os.path.join(in_folder, raw_mags[mag].replace('.fasta','_magpurify'))
-        mag_out = os.path.join(out_folder, clean_mags[mag])
+        mag_out = out_folder + clean_mags[mag]
         args1 = ['magpurify', 'phylo-markers',
         '--db', '/mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0', mag_in, mag_puri_out]
         subprocess.call(' '.join(args1), shell = True)
@@ -25,4 +25,5 @@ def process_genus(in_folder, out_folder):
         subprocess.call(' '.join(args_clean), shell = True)
 
 for i in range(0,len(snakemake.input)):
+    #os.makedirs(snakemake.output[i])
     process_genus(snakemake.input[i], snakemake.output[i])
