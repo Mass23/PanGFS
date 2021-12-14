@@ -10,19 +10,21 @@ localrules:
 ###########################
 rule phylo_analysis:
     input:
-        'status/dn_genomes.done',
-        'status/gtdbtk.done'
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out'), GENUS=GENUS_LIST)
     output:
         touch("status/phylo_analysis.done")
 
 rule run_gtotree:
+    input:
+        'status/dn_genomes.done',
+        'status/gtdbtk.done'
     params:
         GENUS=GENUS_LIST,
         HMM=HMM_LIST,
         OUT=OUT_LIST,
         RES_DIR=RESULTS_DIR
     output:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out/'), GENUS=GENUS_LIST)
+        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out'), GENUS=GENUS_LIST))
     conda:
         os.path.join(ENV_DIR, "gtotree.yaml")
     script:
@@ -30,11 +32,11 @@ rule run_gtotree:
 
 rule run_fastani:
     input:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out/'), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out'), GENUS=GENUS_LIST)
     params:
         GENUS_LIST=GENUS_LIST
     output:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out/'), GENUS=GENUS_LIST)
+        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out'), GENUS=GENUS_LIST))
     run:
         os.system('source /home/massimo.bourquin/apps/miniconda3/etc/profile.d/conda.sh')
         os.system('conda activate fastani')

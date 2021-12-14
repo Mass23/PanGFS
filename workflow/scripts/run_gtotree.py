@@ -19,12 +19,12 @@ def process_genus(genus, hmm, out, res_dir):
     gtotree_args = ['GToTree','-o',os.path.join(res_dir,genus,'gtotree_out'),
                     '-f',os.path.join(res_dir, genus, 'paths_list.txt'),
                     '-a',os.path.join(res_dir, genus, 'acc_outgroup.txt'),
-                    '-H',hmm,'-j','32','-G','0.5','-N']
+                    '-H',hmm,'-j','32','-G','0.5']
     subprocess.call(' '.join(gtotree_args), shell = True)
-    iqtree_args = ['iqtree','-s',os.path.join(res_dir,genus,'gtotree_out/Aligned_SCGs.faa'),
-                    '-spp',os.path.join(res_dir, genus,'gtotree_out/run_files/Partitions.txt'),
-                    '-m','MFP','-nt','32','-bb','1000','-pre',os.path.join(res_dir, genus,'iqtree_')]
-    subprocess.call(' '.join(iqtree_args), shell = True)
+    #iqtree_args = ['iqtree','-s',os.path.join(res_dir,genus,'gtotree_out/Aligned_SCGs.faa'),
+    #                '-spp',os.path.join(res_dir, genus,'gtotree_out/run_files/Partitions.txt'),
+    #                '-m','MFP','-nt','32','-bb','1000','-pre',os.path.join(res_dir, genus,'iqtree_')]
+    #subprocess.call(' '.join(iqtree_args), shell = True)
 
 for i in range(0,len(snakemake.params.GENUS)):
     process_genus(snakemake.params.GENUS[i], snakemake.params.HMM[i], snakemake.params.OUT[i], snakemake.params.RES_DIR)
