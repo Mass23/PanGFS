@@ -1,3 +1,14 @@
+GL_16_Down_179840_sub.contigs
+GL_16_UP_maxbin_res.153.fasta_sub.contigs
+GL_46_Up_maxbin_res.113.fasta_sub.contigs
+GL_47_Down_maxbin_res.047.fasta_sub.contigs
+GL_47_Down_maxbin_res.282.fasta_sub.contigs
+GL_47_Up_maxbin_res.066.fasta_sub.contigs
+GL_53_Down_10914.contigs
+GL_53_Down_45456.contigs
+GL_53_Down_66705.contigs
+GL_53_Down_maxbin_res.042.fasta_sub.contigs
+GL_5_Up_maxbin_res.042.fasta_sub.contigs
 GL_R17_GL16_UP_1_G4.1.contigs
 GL_R17_GL16_UP_1_maxbin_res.022.fasta_sub.contigs
 GL_R18_GL16_UP_2_G6.2.1.3.contigs

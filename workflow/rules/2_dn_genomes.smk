@@ -39,5 +39,5 @@ rule create_genomes_list:
     run:
         import os
         for i in range(0,len(input)):
-            os.system('gunzip ' + input[i] + '*.fna.gz')
-            os.system('ls ' + input[i] + '*.fna > ' + output[i])
+            os.system('gunzip ' + input[i] + '/*.fna.gz')
+            os.system('ls ' + input[i] + '/*.fna > ' + output[i])

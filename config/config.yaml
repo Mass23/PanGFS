@@ -18,11 +18,11 @@ gtdbtk_db_dir: "/mnt/esb-storage-01/NOMIS/databases/release202"
 
 gtdbtk:
   path: "/mnt/esb-storage-01/NOMIS/databases/release202"
-  threads: 32
+  threads: 48
 
 ##############################
 # Taxonomies and associated info for gtotree
 gtotree:
-  out_list: ['GCF_000023345.1','GCF_000243275.1','GCF_001953305.1','GCA_000383735.1']
+  out_list: ['GCF_001955735.1','GCF_000243275.1','GCF_001953305.1','GCF_000383735.1']
   hmm_list: ['Gammaproteobacteria','Bacteroidetes','Bacteroidetes','Bacteria'] 
   genus_list: ['Polaromonas','Flavobacterium','Ferruginibacter','UBA1315']

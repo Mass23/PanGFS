@@ -8,7 +8,7 @@ localrules:
 
 rule gtdbtk:
     input:
-        #os.path.join(RESULTS_DIR, "gtdbtk_output/"),
+        os.path.join(RESULTS_DIR, "gtdbtk_output/"),
         expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"), GENUS=GENUS_LIST)
     output:
         touch("status/gtdbtk.done")
