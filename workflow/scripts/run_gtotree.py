@@ -19,7 +19,7 @@ def process_genus(genus, hmm, out, res_dir):
     gtotree_args = ['GToTree','-o',os.path.join(res_dir,genus,'gtotree_out'),
                     '-f',os.path.join(res_dir, genus, 'paths_list.txt'),
                     '-a',os.path.join(res_dir, genus, 'acc_outgroup.txt'),
-                    '-H',hmm,'-j','32','-G','0.5']
+                    '-H',hmm,'-j','32','-G','0.3']
     subprocess.call(' '.join(gtotree_args), shell = True)
     #iqtree_args = ['iqtree','-s',os.path.join(res_dir,genus,'gtotree_out/Aligned_SCGs.faa'),
     #                '-spp',os.path.join(res_dir, genus,'gtotree_out/run_files/Partitions.txt'),

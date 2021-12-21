@@ -12,7 +12,7 @@ rule phylo_analysis:
     input:
         'status/dn_genomes.done',
         'status/gtdbtk.done',
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/fastani_out'), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/gtotree_out'), GENUS=GENUS_LIST)
     output:
         touch("status/phylo_analysis.done")
 
