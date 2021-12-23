@@ -1,0 +1,18 @@
+name: mmseqs2
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=4.5=1_gnu
+  - bzip2=1.0.8=h7b6447c_0
+  - ca-certificates=2021.10.26=h06a4308_2
+  - gawk=5.1.0=h7b6447c_0
+  - libgcc-ng=9.3.0=h5101ec6_17
+  - libgomp=9.3.0=h5101ec6_17
+  - libstdcxx-ng=9.3.0=hd4cf53a_17
+  - mmseqs2=13.45111=h95f258a_1
+  - openssl=1.1.1l=h7f8727e_0
+  - wget=1.20.1=h20c2e04_0
+  - zlib=1.2.11=h7f8727e_4
+prefix: /home/massimo.bourquin/apps/miniconda3/envs/mmseqs2

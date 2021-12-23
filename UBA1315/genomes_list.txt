@@ -19,3 +19,4 @@
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/UBA1315/Genomes/GCA_903919975.1_freshwater_MAG_---_Loclat_bin-13236_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/UBA1315/Genomes/GCA_903930425.1_freshwater_MAG_---_Loclat_bin-19251_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/UBA1315/Genomes/GCA_903934285.1_freshwater_MAG_---_Loc090519-7m_bin-1587_genomic.fna
+/mnt/md1200/epfl_sber/massimo/PanGFS_res/UBA1315/Genomes/GCF_900097105.1_WK001_genomic.fna

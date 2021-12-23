@@ -21,4 +21,5 @@
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Ferruginibacter/Genomes/GCA_903858475.1_freshwater_MAG_---_Ja2_bin-0877_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Ferruginibacter/Genomes/GCA_903871575.1_freshwater_MAG_---_Kiruna_bin-00843_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Ferruginibacter/Genomes/GCA_903878475.1_freshwater_MAG_---_LJ_bin-0623_genomic.fna
+/mnt/md1200/epfl_sber/massimo/PanGFS_res/Ferruginibacter/Genomes/GCF_001953305.1_ASM195330v1_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Ferruginibacter/Genomes/GCF_003721595.1_ASM372159v1_genomic.fna

@@ -13,12 +13,12 @@ def process_genus(genus, hmm, out, res_dir):
     # create file containing paths/accessions
     with open(os.path.join(res_dir, genus, 'paths_list.txt'), 'w') as f:
         f.write('\n'.join(merged_paths))
-    with open(os.path.join(res_dir, genus, 'acc_outgroup.txt'), 'w') as f:
-        f.write(out)
+    #with open(os.path.join(res_dir, genus, 'acc_outgroup.txt'), 'w') as f:
+    #    f.write(out)
     # run  gtotree
     gtotree_args = ['GToTree','-o',os.path.join(res_dir,genus,'gtotree_out'),
                     '-f',os.path.join(res_dir, genus, 'paths_list.txt'),
-                    '-a',os.path.join(res_dir, genus, 'acc_outgroup.txt'),
+                    #'-a',os.path.join(res_dir, genus, 'acc_outgroup.txt'),
                     '-H',hmm,'-j','32','-G','0.3']
     subprocess.call(' '.join(gtotree_args), shell = True)
     #iqtree_args = ['iqtree','-s',os.path.join(res_dir,genus,'gtotree_out/Aligned_SCGs.faa'),

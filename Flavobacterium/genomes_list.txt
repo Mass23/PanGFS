@@ -77,6 +77,7 @@
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCA_903913315.1_freshwater_MAG_---_C24_bin-1519_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCA_903920835.1_freshwater_MAG_---_E14_bin-1922_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCF_000016645.1_ASM1664v1_genomic.fna
+/mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCF_000243275.1_ASM24327v1_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCF_000252125.1_ASM25212v2_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCF_000264055.1_Flav123_1.0_genomic.fna
 /mnt/md1200/epfl_sber/massimo/PanGFS_res/Flavobacterium/Genomes/GCF_000282055.1_CF136.fsa_genomic.fna
