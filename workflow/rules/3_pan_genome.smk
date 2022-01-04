@@ -44,7 +44,7 @@ rule prokka_mags:
     input:
         expand(os.path.join(RESULTS_DIR, '{GENUS}/cleaned_MAGs'), GENUS=GENUS_LIST)
     output:
-        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/Mappings'), GENUS=GENUS_LIST))
+        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST))
     params:
         CPU=32
     conda:
