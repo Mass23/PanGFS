@@ -1,3 +1,3 @@
 # PanGFS
 
-Analysis of GFS metagenome assembled genomes (MAGs) from a phylogenomic perspective.
+Analysis of GFS metagenome assembled genomes (MAGs) pangenomes from a phylogenomic perspective.
