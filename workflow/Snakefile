@@ -23,7 +23,7 @@ include:
 
 # List of (main) targets to be created
 TARGETS = []
-STEPS = ['gtdbtk_mags', 'dn_genomes', 'pan_genome']
+STEPS = ['gtdbtk_mags', 'dn_genomes']#, 'pan_genome', 'phylo_analysis']
 
 # Download genomes
 if "dn_genomes" in STEPS:

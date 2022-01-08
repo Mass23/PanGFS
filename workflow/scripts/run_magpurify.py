@@ -2,6 +2,8 @@ import os
 import glob
 import subprocess
 def process_genus(in_folder, out_folder):
+    print(in_folder)
+    print(out_folder)
     raw_mags = glob.glob(in_folder + '/*.fasta')
     clean_mags = [i.split('/')[-1].replace('.fasta','_clean.fasta') for i in raw_mags]
     for mag in range(0,len(raw_mags)):
@@ -24,6 +26,6 @@ def process_genus(in_folder, out_folder):
         args_clean = ['magpurify', 'clean-bin', mag_in, mag_puri_out, mag_out]
         subprocess.call(' '.join(args_clean), shell = True)
 
-for i in range(0,len(snakemake.input)):
-    os.makedirs(snakemake.output[i])
-    process_genus(snakemake.input[i], snakemake.output[i])
+#for i in range(0,len(snakemake.input)):
+os.makedirs(str(snakemake.output))
+process_genus(str(snakemake.input), str(snakemake.output))

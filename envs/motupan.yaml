@@ -1,0 +1,8 @@
+name: motupan
+channels:
+  - pip
+  - bioconda
+  - defaults
+prefix: /home/massimo.bourquin/apps/miniconda3/envs/motupan
+pip:
+  - mOTUlizer

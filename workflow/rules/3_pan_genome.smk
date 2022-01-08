@@ -13,8 +13,9 @@ localrules: bin_collect_mantis, bin_link_mantis, mantis_config, mantis_reformat_
 rule pan_genome:
     input:
         'status/dn_genomes.done',
+        expand(os.path.join(RESULTS_DIR, '{GENUS}'), GENUS=GENUS_LIST),
         #expand(os.path.join(RESULTS_DIR, '{GENUS}/paths_list_filtered.txt'), GENUS=GENUS_LIST)
-        #expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST),
+        expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST),
         #expand(os.path.join(RESULTS_DIR, '{GENUS}/Mappings'), GENUS=GENUS_LIST),
         #expand(os.path.join(RESULTS_DIR, '{GENUS}/pangenome_annotations_list.txt'), GENUS=GENUS_LIST),
         expand(os.path.join(RESULTS_DIR, '{GENUS}/mmseqs2_all_seqs.fasta'), GENUS=GENUS_LIST)
@@ -30,27 +31,27 @@ rule pan_genome:
 
 rule prokka_genomes:
     input:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/Genomes'), GENUS=GENUS_LIST)
+        expand(os.path.join(RESULTS_DIR, '{GENUS}'), GENUS=GENUS_LIST)
     output:
-        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST))
+        directory(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'))
     params:
-        CPU=32
+        CPU=12
     conda:
         os.path.join(ENV_DIR, "prokka.yaml")
     script:
         os.path.join(SRC_DIR, "run_prokka_genomes.py")
 
-rule prokka_mags:
-    input:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/cleaned_MAGs'), GENUS=GENUS_LIST)
-    output:
-        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST))
-    params:
-        CPU=32
-    conda:
-        os.path.join(ENV_DIR, "prokka.yaml")
-    script:
-        os.path.join(SRC_DIR, "run_prokka_mags.py")
+#rule prokka_mags:
+#    input:
+#        expand(os.path.join(RESULTS_DIR, '{GENUS}/cleaned_MAGs'), GENUS=GENUS_LIST)
+#    output:
+#        directory(expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST))
+#    params:
+#        CPU=32
+#    conda:
+#        os.path.join(ENV_DIR, "prokka.yaml")
+#    script:
+#        os.path.join(SRC_DIR, "run_prokka_mags.py")
 
 #rule list_genome_annotations:
 #    input:
@@ -60,17 +61,17 @@ rule prokka_mags:
 #    run:
 #        import os
 #        for i in range(0,len(input)):
-#            os.system('ls ' + input[i] + '/*/*.faa > ' + output[i])
+#            os.system('ls ' + input[i] + '/*/GC*.faa > ' + output[i])
 
-rule run_mmseqs2_cluster:
-    input:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST)
-    output:
-        expand(os.path.join(RESULTS_DIR, '{GENUS}/mmseqs2_all_seqs.fasta'), GENUS=GENUS_LIST)
-    conda:
-        os.path.join(ENV_DIR, "mmseqs2.yaml")
-    script:
-        os.path.join(SRC_DIR, 'run_mmseqs2.py')
+#rule run_mmseqs2_cluster:
+#    input:
+#        expand(os.path.join(RESULTS_DIR, '{GENUS}/Pangenome'), GENUS=GENUS_LIST)
+#    output:
+#        expand(os.path.join(RESULTS_DIR, '{GENUS}/mmseqs2_all_seqs.fasta'), GENUS=GENUS_LIST)
+#    conda:
+#        os.path.join(ENV_DIR, "mmseqs2.yaml")
+#    script:
+#        os.path.join(SRC_DIR, 'run_mmseqs2.py')
 
 
 
