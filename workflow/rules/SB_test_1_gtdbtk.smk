@@ -9,9 +9,7 @@ localrules:
 rule gtdbtk:
     input:
         os.path.join(RESULTS_DIR, "gtdbtk_output"),
-        #'dummy_test.test'
-        expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"), GENUS=GENUS_LIST)
-        #expand(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/{MAG}_clean.fasta"), GENUS=GENUS_LIST)
+        os.path.join(DATA_DIR, 'status/cleaning.done')
     output:
         touch("status/gtdbtk.done")
 
@@ -60,8 +58,9 @@ rule list_target_mags:
 checkpoint copy_target_mags:
     input:
         expand(os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt"),GENUS=GENUS_LIST)
+#        os.path.join(DATA_DIR, "accessions/{GENUS}/mags_list.txt")
     output:
-        directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
+        target=directory(expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs"), GENUS=GENUS_LIST))
     run:
         for i in range(0,len(input)):
             os.mkdir(output[i])
@@ -71,42 +70,57 @@ checkpoint copy_target_mags:
                 if sum(contigs_length) > 100000:
                     os.system('cp -v ' + os.path.join(MAGS_DIR, file_to_move) + '.fasta ' + output[i])
 
-def aggregate_input(wildcards):
-    checkpoint_output = checkpoints.copy_target_mags.get(**wildcards).output[0]
-    #files = expand(os.path.join(RESULTS_DIR, '{{GENUS}}/MAGs/{MAG}.fasta'), GENUS=GENUS_LIST, MAG=glob_wildcards(os.path.join(checkpoint_output, "{i}.fasta")).i)
-    #files = [file for file in files if os.path.isfile(file)]
-    #return expand(os.path.join(RESULTS_DIR, '{{GENUS}}/MAGs/{MAG}.fasta'), MAG=glob_wildcards(os.path.join(checkpoint_output, "{i}.fasta")).i)
-    return [file for file in glob.glob(os.path.join(RESULTS_DIR, '*/MAGs/*.fasta')) if os.path.isfile(file)]
-
-#rule dummy_rule:
-#    input:
-#        aggregate_input
-#    output:
-#        'dummy_test.test'
-#    shell:
-#        'echo {input} > {output}'
+rule bin_link:
+    input:
+        os.path.join(RESULTS_DIR, "{GENUS}/MAGs/{i}.fasta")
+    output:
+        os.path.join(RESULTS_DIR, "linked/{GENUS}/MAGs/{i}.fasta")
+    wildcard_constraints:
+        GENUS="|".join(GENUS_LIST)
+    shell:
+        "ln -vs {input} {output}"
 
 rule mag_purify:
     input:
-        aggregate_input
-        #expand(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/{MAG}.fasta"), GENUS=GENUS_LIST)
+        os.path.join(RESULTS_DIR, "linked/{GENUS}/MAGs/{i}.fasta")
     output:
-        directory(os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs"))
-        #[f.replace('.fasta','_magpurify') for f in glob.glob(os.path.join(RESULTS_DIR, '*/MAGs/*.fasta')],
-        #[f.replace('MAGs','cleaned_MAGs').replace('.fasta','_clean.fasta') for f in glob.glob(os.path.join(RESULTS_DIR, '*/MAGs/*.fasta')]
-        #directory(os.path.join(RESULTS_DIR, "{GENUS}/MAGs/{MAG}_magpurify")),
-        #os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/{MAG}_clean.fasta")
+        os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/{i}_clean.fasta")
+        #os.path.join(RESULTS_DIR, "magpurify/{GENUS}/cleaned_MAGs/{i}_clean.fasta")
     wildcard_constraints:
-        #MAG=""
-        files="|".join([file for file in glob.glob(os.path.join(RESULTS_DIR, '*/MAGs/*.fasta'))])
+        GENUS="|".join(GENUS_LIST)
     conda:
         os.path.join(ENV_DIR, "magpurify.yaml")
     shell:
-        "magpurify phylo-markers --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} $(basename {input})_magpurify && "
-        "magpurify clade-markers --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} $(basename {input})_magpurify && "
-        "magpurify tetra-freq {input} $(basename {input})_magpurify && "
-        "magpurify gc-content {input} $(basename {input})_magpurify && "
-        "magpurify known-contam --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} $(basename {input})_magpurify && "
-        "magpurify clean-bin {input} $(basename {input})_magpurify $(echo {input} | sed -e 's|/MAGS/|/cleaned_MAGs/|g' -e 's|.fasta|_clean.fasta|g') "
-    #script:
-    #    os.path.join(SRC_DIR, "run_magpurify.py"
+        "magpurify phylo-markers --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} {input}_magpurify && "
+        "magpurify clade-markers --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} {input}_magpurify && "
+        "magpurify tetra-freq {input} {input}_magpurify && "
+        "magpurify gc-content {input} {input}_magpurify && "
+        "magpurify known-contam --db /mnt/esb-storage-01/NOMIS/databases/MAGpurify-db-v1.0 {input} {input}_magpurify && "
+        #"magpurify clean-bin {input} $(basename {input})_magpurify {output} "  # $(echo {input} | sed -e 's|/MAGS/|/cleaned_MAGs/|g' -e 's|.fasta|_clean.fasta|g') "
+        "magpurify clean-bin {input} {input}_magpurify $(basename {output}) " 
+
+def aggregate_mags(wildcards):
+    checkpoint_output = checkpoints.copy_target_mags.get(**wildcards).output.target
+    print(checkpoint_output)
+    print(glob_wildcards(os.path.join(checkpoint_output[0], "{i}.fasta")))
+    mags=[]
+    for genus_folder in checkpoint_output:
+        genus=os.path.basename(os.path.dirname(genus_folder))
+        mags.extend(
+            expand(
+                os.path.join(RESULTS_DIR, "{GENUS}/cleaned_MAGs/{i}.fasta"), GENUS=genus, i=glob_wildcards(os.path.join(genus_folder, "{i}.fasta")).i
+            )
+        )
+    return mags
+
+#    return expand(os.path.join(RESULTS_DIR, "magpurify/{GENUS}/cleaned_MAGs/{i}_clean.fasta"), 
+#        GENUS=GENUS_LIST,
+#        i=glob_wildcards(os.path.join(checkpoint_output, "{i}.fasta")).i)
+
+rule cleaning_done:
+    input:
+        aggregate_mags
+#    wildcard_constraints:
+#        GENUS="|".join(GENUS_LIST)
+    output:
+        touch(os.path.join(DATA_DIR, 'status/cleaning.done'))

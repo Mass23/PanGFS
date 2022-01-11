@@ -1,7 +1,9 @@
 GL_11_Down_121918.contigs
+GL_12_Up_41276_sub.contigs
 GL_16_Down_53841_sub.contigs
 GL_16_Down_O1.12.2.2.contigs
 GL_16_Down_maxbin_res.029.fasta_sub.contigs
+GL_17_Up_118962_sub.contigs
 GL_46_Down_maxbin_res.003.fasta.contigs
 GL_46_Down_maxbin_res.096.fasta_sub.contigs
 GL_46_Up_37913_sub.contigs

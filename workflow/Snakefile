@@ -36,7 +36,7 @@ if "dn_genomes" in STEPS:
 # Taxonomy
 if "gtdbtk_mags" in STEPS:
     include:
-        "rules/1_gtdbtk.smk"
+        "rules/SB_test_1_gtdbtk.smk"
     TARGETS += [
         "status/gtdbtk.done"
     ]
